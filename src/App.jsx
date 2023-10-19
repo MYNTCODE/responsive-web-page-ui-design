@@ -7,7 +7,6 @@ function App() {
   return (
     <>
       <div>
-        <NavBar />
         <HomePage />
         <Footer />
       </div>
