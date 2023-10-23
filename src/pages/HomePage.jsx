@@ -6,29 +6,13 @@ import NavBar from "../components/Navbar";
 import ShoppingBagWindow from "../components/ShoppingBagWindow";
 
 function HomePage() {
-  const [cart, setCart] = useState([]);
-  const [lastAddedItem, setLastAddedItem] = useState(null);
-  const [price1, setPrice1] = useState([]);
-
-  const addToCart = (item) => {
-    setCart([...cart, item]);
-    setPrice1([...price1, item.price]);
-    setLastAddedItem(item);
-  };
-
   return (
     <>
-      <NavBar cartItemCount={cart.length} />
+      <NavBar />
       <Top />
-      <Middle addToCart={addToCart} />
+      <Middle />
       <Bottom />
-      {lastAddedItem && (
-        <ShoppingBagWindow
-          lastAddedItem={lastAddedItem}
-          price1={price1}
-          onClose={() => setLastAddedItem(null)}
-        />
-      )}
+      {/* <ShoppingBagWindow /> */}
     </>
   );
 }

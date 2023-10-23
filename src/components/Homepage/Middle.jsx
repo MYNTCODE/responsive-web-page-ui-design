@@ -1,13 +1,21 @@
-// Middle.js
 import { useState } from "react";
 import ButtonAddItem from "../ButtonAddItem";
+import ShoppingBagWindow from "../ShoppingBagWindow";
 import items from "../../data/item";
 
-function Middle({ addToCart }) {
+function Middle() {
+  const [addToCart, setAddToCart] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
+
+  const handleAddtoCart = (item) => {
+    setSelectedItem(item);
+    setAddToCart(true);
+  };
+
   return (
     <>
-      <div className="bg-top-section bg-gradient-to-r from-red-200 to-indigo-500 lg:h-[90vh] m-[5%] border-solid border-4 border-blue-800 rounded-3xl">
-        <div className="item-all lg:flex lg:justify-between lg:mx-[5%] lg:mt-[5%] lg:h-[70vh]">
+      <div className="bg-top-section bg-gradient-to-r from-red-200 to-blue-800 lg:h-[90vh] m-[5%] border-solid border-4 border-blue-800 rounded-3xl">
+        <div className=" item-all lg:flex lg:justify-between lg:mx-[5%] lg:mt-[5%] lg:h-[70vh]">
           {items.map((item, index) => (
             <div key={index} className="lg:flex-col lg:w-[30%] ">
               <div className="bg-white h-[80%] border-solid border-4 border-blue-800 rounded-3xl ">
@@ -15,13 +23,21 @@ function Middle({ addToCart }) {
               </div>
               <ButtonAddItem
                 price={item.price}
-                onClick={() => addToCart(item)}
                 name={item.name}
+                onAddToCart={() => handleAddtoCart(item)}
               />
             </div>
           ))}
         </div>
       </div>
+
+      {addToCart && (
+        <ShoppingBagWindow
+          isOpen={addToCart}
+          onClose={() => setAddToCart(false)}
+          selectedItem={selectedItem}
+        />
+      )}
     </>
   );
 }

@@ -1,7 +1,9 @@
 function Footer() {
   return (
     <>
-      <h1>This is Footer</h1>
+      <div className=" lg:h-[15vh] bg-red-200">
+        <h1>contact</h1>
+      </div>
     </>
   );
 }

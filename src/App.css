@@ -40,3 +40,47 @@
 .read-the-docs {
   color: #888;
 } */
+
+/* YourComponent.css */
+
+/* YourComponent.css */
+
+/* YourComponent.css */
+
+/* YourComponent.css */
+
+/* YourComponent.css */
+
+/* YourComponent.css */
+
+@keyframes slideLeft {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.slide-left {
+  animation: slideLeft 15s linear infinite;
+  overflow: hidden;
+  white-space: nowrap;
+  /* animation-delay: 0ms; เพิ่ม animation-delay ต่ำกว่าความยาวของ animation (10s) */
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(-100%);
+    opacity: 0.25;
+  }
+  to {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+
+.box {
+  animation: slide-in 1500ms;
+  animation-delay: 500ms;
+}

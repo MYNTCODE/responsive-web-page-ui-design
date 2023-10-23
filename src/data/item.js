@@ -9,13 +9,13 @@ const items = [
     id: "Item2",
     name: "example item 2",
     image: "",
-    price: 0.99,
+    price: 1.99,
   },
   {
     id: "Item3",
     name: "example item 3",
     image: "",
-    price: 0.99,
+    price: 2.99,
   },
 ];
 
