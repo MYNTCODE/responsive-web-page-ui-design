@@ -1,8 +1,18 @@
 function Bottom() {
   return (
     <>
-      <div>
-        <h1>This is bottom.</h1>
+      <div className=" bg-blue-800 h-screen flex items-center justify-center]">
+        <div className=" bg-white h-[80%] w-[90%] m-[5%] ">
+          <div className="img-1">
+            <p>PHOTO 1</p>
+          </div>
+          <div className="img-2">
+            <p>PHOTO 2</p>
+          </div>
+          <div className="img-2">
+            <p>PHOTO 3</p>
+          </div>
+        </div>
       </div>
     </>
   );

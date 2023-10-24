@@ -1,17 +1,21 @@
 // NavBar.js
 import { useState } from "react";
 import ShoppingBagWindow from "./ShoppingBagWindow";
+import { Link } from "react-router-dom";
 
 function NavBar() {
   return (
     <>
       <div className="navbar top-0 z-[100] text-xl flex font-bold h-[40px] bg-red-200 text-blue-500 border-blue-800 px-[10%] py-[8px] border-b-4 sticky">
         <div className="nav-left">
-          <p>Logo</p>
+          <Link to={`/`}>
+            {" "}
+            <p>Logo</p>
+          </Link>
         </div>
         <div className="nav-right flex justify-end w-full ">
-          <p className="px-[3%] hover:cursor-pointer">Menu 1</p>
-          <p className="px-[5%] hover:cursor-pointer">Menu 2</p>
+          <p className="px-[5%] hover:cursor-pointer">About</p>
+          <p className="pr-[5%] hover:cursor-pointer">Contacts</p>
           <div className="cart" onClick="">
             <img
               className="shopping-bag cursor-pointer absolute w-8 z-0 mt-[-4px]"

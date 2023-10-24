@@ -2,6 +2,8 @@ import { useState } from "react";
 import ButtonAddItem from "../ButtonAddItem";
 import ShoppingBagWindow from "../ShoppingBagWindow";
 import items from "../../data/item";
+import ButtonSeeMore from "../ButtonSeeMore";
+import { Link } from "react-router-dom";
 
 function Middle() {
   const [addToCart, setAddToCart] = useState(false);
@@ -14,7 +16,7 @@ function Middle() {
 
   return (
     <>
-      <div className="bg-top-section bg-gradient-to-r from-red-200 to-blue-800 lg:h-[90vh] m-[5%] border-solid border-4 border-blue-800 rounded-3xl">
+      <div className="bg-top-section bg-white lg:h-[90vh] m-[5%] border-solid border-4 border-blue-800 rounded-3xl">
         <div className=" item-all lg:flex lg:justify-between lg:mx-[5%] lg:mt-[5%] lg:h-[70vh]">
           {items.map((item, index) => (
             <div key={index} className="lg:flex-col lg:w-[30%] ">
@@ -29,6 +31,9 @@ function Middle() {
             </div>
           ))}
         </div>
+        <Link to={`/collections`}>
+          <ButtonSeeMore />
+        </Link>
       </div>
 
       {addToCart && (
