@@ -16,7 +16,7 @@ function Middle() {
 
   return (
     <>
-      <div className="bg-top-section bg-white lg:h-[90vh] m-[5%] border-solid border-4 border-blue-800 rounded-3xl">
+      <div className="bg-top-section bg-white p-6 lg:h-[90vh] m-[5%] border-solid border-4 border-blue-800 rounded-3xl">
         <div className=" item-all lg:flex lg:justify-between lg:mx-[5%] lg:mt-[5%] lg:h-[70vh]">
           {items.map((item, index) => (
             <div key={index} className="lg:flex-col lg:w-[30%] ">
