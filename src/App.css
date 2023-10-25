@@ -1,11 +1,11 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  /* max-width: 1280px; */
+  /* margin: 0 auto; */
+  /* padding: 2rem; */
   text-align: center;
 }
 
-.logo {
+/* .logo {
   height: 6em;
   padding: 1.5em;
   will-change: filter;
@@ -25,8 +25,8 @@
   to {
     transform: rotate(360deg);
   }
-}
-
+} */
+/* 
 @media (prefers-reduced-motion: no-preference) {
   a:nth-of-type(2) .logo {
     animation: logo-spin infinite 20s linear;
@@ -39,4 +39,36 @@
 
 .read-the-docs {
   color: #888;
+} */
+
+@keyframes slideLeft {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.slide-left {
+  animation: slideLeft 15s linear infinite;
+  overflow: hidden;
+  white-space: nowrap;
+  /* animation-delay: 0ms; เพิ่ม animation-delay ต่ำกว่าความยาวของ animation (10s) */
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(-100%);
+    opacity: 0.25;
+  }
+  to {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+
+.box {
+  animation: slide-in 1500ms;
+  animation-delay: 500ms;
 }
