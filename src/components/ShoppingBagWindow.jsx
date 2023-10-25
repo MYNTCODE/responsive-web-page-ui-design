@@ -19,7 +19,7 @@ function ShoppingBagWindow({ isOpen, onClose }) {
             id="popUp"
             className="h-screen w-screen bg-black  bg-opacity-40 flex items-center justify-center"
           >
-            <div className="shopping-box border-solid bg-black opacity-90 border-black rounded-3xl border-4  lg:p-[2%] w-[30%] px-[5%]">
+            <div className="shopping-box border-solid bg-black border-neutral-400 rounded-3xl border-4  lg:p-[2%] w-[30%] px-[5%]">
               <p className="text-3xl">Shopping Cart</p>
               <div className="qty-item-price flex justify-between mt-6 mx-4">
                 <div className="item ">

@@ -1,9 +1,14 @@
 import React from "react";
+import NavBar from "../components/Navbar";
+import AboutBrand from "../components/about/AboutBrand";
+import Footer from "../components/Footer";
 
 function About() {
   return (
     <>
-      <div> About </div>
+      <NavBar />
+      <AboutBrand />
+      <Footer />
     </>
   );
 }

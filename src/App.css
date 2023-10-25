@@ -68,7 +68,14 @@
   }
 }
 
-.box {
-  animation: slide-in 1500ms;
-  animation-delay: 500ms;
+@media (min-width: 992px) {
+  .box {
+    animation: slide-in 1500ms;
+    animation-delay: 0ms;
+  }
+}
+
+::selection {
+  background: #a7c0ff;
+  color: rgb(28, 28, 146);
 }
