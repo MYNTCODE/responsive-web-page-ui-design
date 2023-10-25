@@ -31,7 +31,7 @@ function Middle() {
             </div>
           ))}
         </div>
-        <Link to={`/collections`}>
+        <Link to={`/collections`} autoFocus={false}>
           <ButtonSeeMore />
         </Link>
       </div>

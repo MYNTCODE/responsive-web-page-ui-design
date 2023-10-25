@@ -1,10 +1,9 @@
-import React, { useState } from "react";
-import NavBar from "../Navbar";
+import React, { useState, useEffect } from "react";
 import ButtonAddItem from "../ButtonAddItem";
 import items from "../../data/item";
 import ShoppingBagWindow from "../ShoppingBagWindow";
 
-export default function AllItem() {
+function AllItem() {
   const [addToCart, setAddToCart] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
 
@@ -13,51 +12,56 @@ export default function AllItem() {
     setAddToCart(true);
   };
 
+  useEffect(() => {
+    // ตั้งค่า scroll ที่ Top ทุกครั้งที่ component ถูก render
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
-      <NavBar />
-      <div className=" h-[100vh]">
-        <div>
-          <div className="col-head bg-white h-[15%]">
-            <h1 className=" text-black font-bold text-[60px] pt-4  justify-center">
-              Collection
-            </h1>
-          </div>
-          <div className="box-container bg-blue-800 h-screen flex justify-center">
-            {items.map((item, index) => (
-              <div className="img w-[360px] mx-[5%] pt-[5%]" key={index}>
-                <div className="bg-black rounded-3xl h-[60%] w-[40$] m-[4%]">
-                  <img className="h-[60%]" src="" alt="" />
-                </div>
-                <ButtonAddItem
-                  price={item.price}
-                  name={item.name}
-                  onAddToCart={() => handleAddtoCart(item)}
-                />
+      <div className=" lg:h-screen bg-blue-800 lg:pt-[3%] pb-10 lg:pb-0">
+        <h1 className=" text-red-200 font-bold text-[60px]  justify-center">
+          Collection
+        </h1>
+        <div className="box-container lg:flex justify-center m-0 pt-10">
+          {items.map((item, index) => (
+            <div
+              className="img  lg:w-[360px] lg:h-[480px] mx-[5%] pt-[2%]"
+              key={index}
+            >
+              <div className="bg-black h-[250px] rounded-3xl lg:h-[100%] m-[4%]">
+                img
               </div>
-            ))}
-          </div>
-          <div className="col-head bg-white h-[15%]">
-            <h1 className=" text-black font-bold text-[60px] pt-4  justify-center">
-              Winter
-            </h1>
-          </div>
-          <div className="box-container bg-blue-800 h-screen flex justify-center">
-            {items.map((item, index) => (
-              <div className="img w-[360px] mx-[5%] pt-[5%]" key={index}>
-                <div className="bg-black rounded-3xl h-[60%] w-[40$] m-[4%]">
-                  <img className="h-[60%]" src="" alt="" />
-                </div>
-                <ButtonAddItem
-                  price={item.price}
-                  name={item.name}
-                  onAddToCart={() => handleAddtoCart(item)}
-                />
-              </div>
-            ))}
-          </div>
+              <ButtonAddItem
+                price={item.price}
+                name={item.name}
+                onAddToCart={() => handleAddtoCart(item)}
+              />
+            </div>
+          ))}
         </div>
       </div>
+      <div className=" h-screen bg-red-200 pt-[5%]">
+        <h1 className=" text-blue-800 font-bold text-[60px]  justify-center">
+          Collection
+        </h1>
+        <div className="box-container lg:flex justify-center m-0 p-0">
+          {items.map((item, index) => (
+            <div
+              className="img lg:w-[360px] lg:h-[480px] mx-[5%] pt-[2%]"
+              key={index}
+            >
+              <div className="bg-black rounded-3xl h-[100%] m-[4%]">img</div>
+              <ButtonAddItem
+                price={item.price}
+                name={item.name}
+                onAddToCart={() => handleAddtoCart(item)}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+
       {addToCart && (
         <ShoppingBagWindow
           isOpen={addToCart}
@@ -68,3 +72,5 @@ export default function AllItem() {
     </>
   );
 }
+
+export default AllItem;

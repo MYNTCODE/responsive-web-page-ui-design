@@ -14,7 +14,10 @@ function NavBar() {
           </Link>
         </div>
         <div className="nav-right flex justify-end w-full ">
-          <p className="px-[5%] hover:cursor-pointer">About</p>
+          <p className="px-[5%] hover:cursor-pointer">
+            <Link to={`/about`}>About </Link>
+          </p>
+
           <p className="pr-[5%] hover:cursor-pointer">Contacts</p>
           <div className="cart" onClick="">
             <img
