@@ -41,17 +41,19 @@ function AllItem() {
           ))}
         </div>
       </div>
-      <div className=" h-screen bg-red-200 pt-[5%]">
+      <div className=" lg:h-screen bg-red-200 lg:pt-[3%] pb-10 lg:pb-0">
         <h1 className=" text-blue-800 font-bold text-[60px]  justify-center">
           Collection
         </h1>
-        <div className="box-container lg:flex justify-center m-0 p-0">
+        <div className="box-container lg:flex justify-center m-0 pt-10">
           {items.map((item, index) => (
             <div
-              className="img lg:w-[360px] lg:h-[480px] mx-[5%] pt-[2%]"
+              className="img  lg:w-[360px] lg:h-[480px] mx-[5%] pt-[2%]"
               key={index}
             >
-              <div className="bg-black rounded-3xl h-[100%] m-[4%]">img</div>
+              <div className="bg-black h-[250px] rounded-3xl lg:h-[100%] m-[4%]">
+                img
+              </div>
               <ButtonAddItem
                 price={item.price}
                 name={item.name}
@@ -61,14 +63,15 @@ function AllItem() {
           ))}
         </div>
       </div>
-
-      {addToCart && (
-        <ShoppingBagWindow
-          isOpen={addToCart}
-          onClose={() => setAddToCart(false)}
-          selectedItem={selectedItem}
-        />
-      )}
+      <div className="hidden lg:block">
+        {addToCart && (
+          <ShoppingBagWindow
+            isOpen={addToCart}
+            onClose={() => setAddToCart(false)}
+            selectedItem={selectedItem}
+          />
+        )}
+      </div>
     </>
   );
 }

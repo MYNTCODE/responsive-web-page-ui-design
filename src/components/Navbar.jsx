@@ -18,7 +18,9 @@ function NavBar() {
             <Link to={`/about`}>About </Link>
           </p>
 
-          <p className="pr-[5%] hover:cursor-pointer">Contacts</p>
+          <p className="pr-[5%] hover:cursor-pointer">
+            <Link to={`/collections`}>Collections</Link>
+          </p>
           <div className="cart" onClick="">
             <img
               className="shopping-bag cursor-pointer absolute w-8 z-0 mt-[-4px]"

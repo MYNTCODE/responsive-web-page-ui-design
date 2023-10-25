@@ -68,7 +68,9 @@
   }
 }
 
-.box {
-  animation: slide-in 1500ms;
-  animation-delay: 500ms;
+@media (min-width: 992px) {
+  .box {
+    animation: slide-in 1500ms;
+    animation-delay: 500ms;
+  }
 }

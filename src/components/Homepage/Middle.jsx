@@ -36,13 +36,15 @@ function Middle() {
         </Link>
       </div>
 
-      {addToCart && (
-        <ShoppingBagWindow
-          isOpen={addToCart}
-          onClose={() => setAddToCart(false)}
-          selectedItem={selectedItem}
-        />
-      )}
+      <div className="hidden lg:block">
+        {addToCart && (
+          <ShoppingBagWindow
+            isOpen={addToCart}
+            onClose={() => setAddToCart(false)}
+            selectedItem={selectedItem}
+          />
+        )}
+      </div>
     </>
   );
 }
