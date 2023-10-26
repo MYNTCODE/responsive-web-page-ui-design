@@ -1,14 +1,21 @@
 import { useState, useEffect } from "react";
 
-function ShoppingBagWindow({ isOpen, onClose }) {
-  const [quantity, setQuantity] = useState(1);
-
-  const handleQuantityChange = (event) => {
-    setQuantity(event.target.value);
-  };
-
+function ShoppingBagWindow({ isOpen, onClose, selectedItems }) {
   const handleNextStep = () => {
     // ทำสิ่งที่ต้องการเมื่อคลิก Next Step
+  };
+  const calculateTotalPrice = (items) => {
+    const totalPrice = items.reduce(
+      (total, item) => total + (item.price * item.quantity || 0),
+      0
+    );
+
+    // ใช้ toFixed(2) เพื่อกำหนดให้มีทศนิยม 2 ตำแหน่ง
+    return parseFloat(totalPrice.toFixed(2));
+  };
+
+  const calculateTotalItem = (items) => {
+    return items.reduce((total, item) => total + (item.quantity || 0), 0);
   };
 
   return (
@@ -27,27 +34,27 @@ function ShoppingBagWindow({ isOpen, onClose }) {
                     <div className="qty">
                       <p className="price text-[20px] mb-1">QTY</p>
                       <div className="input flex-col">
-                        <div>
-                          <input
-                            className="w-[40px] pl-2 bg-white mx-4 rounded  text-black"
-                            type="number"
-                            id="quantity"
-                            name="quantity"
-                            min="1"
-                            max="10"
-                            value={quantity}
-                            onChange={handleQuantityChange}
-                          />
-                        </div>
+                        {selectedItems.map((item, index) => (
+                          <div key={index}>
+                            <div className="text-window  flex mx-4">
+                              <p className="text-window  ">-</p>
+                              <p className="text-window  px-2">
+                                {item.quantity || 1}
+                              </p>
+                              <p className="text-window  ">+</p>
+                            </div>
+                          </div>
+                        ))}
                       </div>
                     </div>
-
                     <div className="item-row">
                       <p className="item text-[20px] ">Item</p>
                       <div className="item-list text-left mt-1 ">
-                        <div>
-                          <p></p>
-                        </div>
+                        {selectedItems.map((item, index) => (
+                          <div key={index}>
+                            <p className="text-window ">{item.name}</p>
+                          </div>
+                        ))}
                       </div>
                     </div>
                   </div>
@@ -55,13 +62,21 @@ function ShoppingBagWindow({ isOpen, onClose }) {
                 <div className="price">
                   <p className="price text-[20px]">Price</p>
                   <div className="price-list text-right ">
-                    <p> </p>
+                    {selectedItems.map((item, index) => (
+                      <p key={index} className="text-window ">
+                        {item.price}
+                      </p>
+                    ))}
                   </div>
                 </div>
               </div>
               <div className="total-price text-left mt-6 ml-4">
-                <p className=" ">Total item: </p>
-                <p className=" ">Total price: $ </p>
+                <p className=" ">
+                  Total item: {calculateTotalItem(selectedItems)}
+                </p>
+                <p className=" ">
+                  Total price: ${calculateTotalPrice(selectedItems)}
+                </p>
               </div>
               <div className="flex justify-between mt-4">
                 <button

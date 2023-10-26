@@ -41,6 +41,10 @@
   color: #888;
 } */
 
+.text-window {
+  font-size: 16px;
+}
+
 @keyframes slideLeft {
   0% {
     transform: translateX(100%);
