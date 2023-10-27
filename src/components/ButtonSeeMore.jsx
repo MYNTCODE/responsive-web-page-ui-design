@@ -5,7 +5,10 @@ function ButtonSeeMore() {
     <>
       <Link to={`/collections`} autoFocus={false}>
         <div className="">
-          <h1 className="text-black font-extrabold hover:underline hover:cursor-pointer ">
+          <h1
+            title="See more collection"
+            className="text-black font-extrabold hover:underline hover:cursor-pointer "
+          >
             See more collection ...
           </h1>
         </div>

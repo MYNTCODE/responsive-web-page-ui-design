@@ -38,6 +38,11 @@ function Middle() {
     setSelectedItems(updatedItems);
   };
 
+  const handleRemoveItem = (itemId) => {
+    const updatedItems = selectedItems.filter((item) => item.id !== itemId);
+    setSelectedItems(updatedItems);
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       const elements = document.querySelectorAll(".middle-section");
@@ -71,7 +76,10 @@ function Middle() {
               className="middle-section lg:flex-col lg:w-[30%] 
               "
             >
-              <div className=" bg-white h-[80%] border-solid border-4 border-blue-800 rounded-3xl ">
+              <div
+                title={item.name}
+                className=" bg-white h-[80%] border-solid border-4 border-blue-800 rounded-3xl "
+              >
                 <p className=" text-black py-20">PHOTO</p>
               </div>
               <ButtonAddItem
@@ -93,7 +101,9 @@ function Middle() {
             onClose={() => setAddToCart(false)}
             selectedItem={selectedItem}
             selectedItems={selectedItems}
-            updateQuantityInMiddle={updateQuantityInMiddle} // Pass the function
+            updateQuantityInMiddle={updateQuantityInMiddle}
+            setSelectedItems={setSelectedItems}
+            handleRemoveItem={handleRemoveItem}
           />
         )}
       </div>
