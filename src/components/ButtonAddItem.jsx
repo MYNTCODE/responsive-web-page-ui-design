@@ -1,7 +1,8 @@
 // ButtonAddItem.js
-function ButtonAddItem({ price, name, onAddToCart }) {
+function ButtonAddItem({ price, name, onAddToCart, onQuantityChange }) {
   const handleAddToCart = () => {
     onAddToCart({ price, name });
+    onQuantityChange();
   };
 
   return (

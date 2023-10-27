@@ -72,10 +72,26 @@
   }
 }
 
+@keyframes slide-up {
+  from {
+    transform: translateY(5%);
+    opacity: 0.25;
+  }
+  to {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
 @media (min-width: 992px) {
   .box {
     animation: slide-in 1500ms;
     animation-delay: 0ms;
+  }
+  .slide-up {
+    animation: slide-up 1000ms;
+    animation-delay: 0ms;
+    /* ตัวอย่างอื่น ๆ ที่คุณอาจต้องการใส่ */
   }
 }
 

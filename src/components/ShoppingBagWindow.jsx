@@ -1,6 +1,11 @@
 import { useState, useEffect } from "react";
 
-function ShoppingBagWindow({ isOpen, onClose, selectedItems }) {
+function ShoppingBagWindow({
+  isOpen,
+  onClose,
+  selectedItems,
+  updateQuantityInMiddle,
+}) {
   const handleNextStep = () => {
     // ทำสิ่งที่ต้องการเมื่อคลิก Next Step
   };
@@ -16,6 +21,35 @@ function ShoppingBagWindow({ isOpen, onClose, selectedItems }) {
 
   const calculateTotalItem = (items) => {
     return items.reduce((total, item) => total + (item.quantity || 0), 0);
+  };
+
+  const [itemQuantities, setItemQuantities] = useState(
+    selectedItems.reduce((quantities, item) => {
+      quantities[item.id] = item.quantity || 1;
+      return quantities;
+    }, {})
+  );
+
+  const handleIncrement = (itemId) => {
+    setItemQuantities((prevQuantities) => {
+      const newQuantity = (prevQuantities[itemId] || 1) + 1;
+      updateQuantityInMiddle(itemId, newQuantity); // Update quantity in Middle.jsx
+      return {
+        ...prevQuantities,
+        [itemId]: newQuantity,
+      };
+    });
+  };
+
+  const handleDecrement = (itemId) => {
+    setItemQuantities((prevQuantities) => {
+      const newQuantity = Math.max(1, (prevQuantities[itemId] || 1) - 1);
+      updateQuantityInMiddle(itemId, newQuantity); // Update quantity in Middle.jsx
+      return {
+        ...prevQuantities,
+        [itemId]: newQuantity,
+      };
+    });
   };
 
   return (
@@ -37,11 +71,21 @@ function ShoppingBagWindow({ isOpen, onClose, selectedItems }) {
                         {selectedItems.map((item, index) => (
                           <div key={index}>
                             <div className="text-window  flex mx-4">
-                              <p className="text-window  ">-</p>
-                              <p className="text-window  px-2">
-                                {item.quantity || 1}
+                              <p
+                                className="text-window  cursor-pointer"
+                                onClick={() => handleDecrement(item.id)}
+                              >
+                                -
                               </p>
-                              <p className="text-window  ">+</p>
+                              <p className="text-window  px-2">
+                                {itemQuantities[item.id]}
+                              </p>
+                              <p
+                                className="text-window cursor-pointer"
+                                onClick={() => handleIncrement(item.id)}
+                              >
+                                +
+                              </p>
                             </div>
                           </div>
                         ))}

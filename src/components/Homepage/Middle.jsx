@@ -1,9 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import ButtonAddItem from "../ButtonAddItem";
 import ShoppingBagWindow from "../ShoppingBagWindow";
 import items from "../../data/item";
 import ButtonSeeMore from "../ButtonSeeMore";
-import { Link } from "react-router-dom";
 
 function Middle() {
   const [addToCart, setAddToCart] = useState(false);
@@ -32,13 +31,47 @@ function Middle() {
     setAddToCart(true);
   };
 
+  const updateQuantityInMiddle = (itemId, newQuantity) => {
+    const updatedItems = selectedItems.map((item) =>
+      item.id === itemId ? { ...item, quantity: newQuantity } : item
+    );
+    setSelectedItems(updatedItems);
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const elements = document.querySelectorAll(".middle-section");
+
+      elements.forEach((element) => {
+        const rect = element.getBoundingClientRect();
+        const isVisible = rect.top < window.innerHeight && rect.bottom >= 0;
+
+        if (isVisible) {
+          element.classList.add("slide-up");
+        } else {
+          element.classList.remove("slide-up");
+        }
+      });
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // เรียกใช้ฟังก์ชันนี้เพื่อตั้งค่าเริ่มต้น
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <>
-      <div className="bg-top-section bg-white p-6 lg:h-[90vh] m-[5%] border-solid border-4 border-blue-800 rounded-3xl">
+      <div className=" bg-top-section bg-white p-6 lg:h-[90vh] m-[5%] border-solid border-4 border-blue-800 rounded-3xl">
         <div className="item-all lg:flex lg:justify-between lg:mx-[5%] lg:mt-[5%] lg:h-[70vh]">
           {items.map((item, index) => (
-            <div key={index} className="lg:flex-col lg:w-[30%] ">
-              <div className="bg-white h-[80%] border-solid border-4 border-blue-800 rounded-3xl ">
+            <div
+              key={index}
+              className="middle-section lg:flex-col lg:w-[30%] 
+              "
+            >
+              <div className=" bg-white h-[80%] border-solid border-4 border-blue-800 rounded-3xl ">
                 <p className=" text-black py-20">PHOTO</p>
               </div>
               <ButtonAddItem
@@ -59,7 +92,8 @@ function Middle() {
             isOpen={addToCart}
             onClose={() => setAddToCart(false)}
             selectedItem={selectedItem}
-            selectedItems={selectedItems} // ส่งรายการทั้งหมดที่เลือกไปให้ ShoppingBagWindow
+            selectedItems={selectedItems}
+            updateQuantityInMiddle={updateQuantityInMiddle} // Pass the function
           />
         )}
       </div>
