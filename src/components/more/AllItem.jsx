@@ -30,6 +30,13 @@ function AllItem() {
     setAddToCart(true);
   };
 
+  const updateQuantityInMiddle = (itemId, newQuantity) => {
+    const updatedItems = selectedItems.map((item) =>
+      item.id === itemId ? { ...item, quantity: newQuantity } : item
+    );
+    setSelectedItems(updatedItems);
+  };
+
   useEffect(() => {
     // ตั้งค่า scroll ที่ Top ทุกครั้งที่ component ถูก render
     window.scrollTo(0, 0);
@@ -87,7 +94,8 @@ function AllItem() {
             isOpen={addToCart}
             onClose={() => setAddToCart(false)}
             selectedItem={selectedItem}
-            selectedItems={selectedItems} // ส่งรายการทั้งหมดที่เลือกไปให้ ShoppingBagWindow
+            selectedItems={selectedItems}
+            updateQuantityInMiddle={updateQuantityInMiddle} // Pass the function
           />
         )}
       </div>
