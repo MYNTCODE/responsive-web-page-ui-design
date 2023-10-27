@@ -2,7 +2,10 @@ function Footer() {
   return (
     <>
       <div className=" h-[8vh] lg:h-[15vh] bg-red-200 p-4 flex-row pt-8">
-        <h1 className=" hidden lg:block font-bold text-[18px] text-blue-950">
+        <h1
+          title="contact"
+          className=" hidden lg:block font-bold text-[18px] text-blue-950"
+        >
           Contact
         </h1>
         <div className="flex justify-center space-x-3 lg:pt-2 ">

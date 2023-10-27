@@ -10,7 +10,9 @@ function ButtonAddItem({ price, name, onAddToCart, onQuantityChange }) {
       onClick={handleAddToCart}
       className="button-add-item my-10 bg-white py-4 border-4 border-blue-800 rounded-3xl w-full hover:bg-red-200 hover:cursor-pointer active:bg-indigo-200"
     >
-      <p className="text-black font-bold">ADD TO CART - {price}$</p>
+      <p title={`ADD TO CART - ${price}$`} className="text-black font-bold">
+        ADD TO CART - {price}$
+      </p>
     </div>
   );
 }

@@ -37,6 +37,11 @@ function AllItem() {
     setSelectedItems(updatedItems);
   };
 
+  const handleRemoveItem = (itemId) => {
+    const updatedItems = selectedItems.filter((item) => item.id !== itemId);
+    setSelectedItems(updatedItems);
+  };
+
   useEffect(() => {
     // ตั้งค่า scroll ที่ Top ทุกครั้งที่ component ถูก render
     window.scrollTo(0, 0);
@@ -45,7 +50,10 @@ function AllItem() {
   return (
     <>
       <div className=" lg:h-screen bg-blue-800 lg:pt-[3%] pb-10 lg:pb-0">
-        <h1 className=" text-red-200 font-bold text-[60px]  justify-center">
+        <h1
+          title="Collection"
+          className=" text-red-200 font-bold text-[60px]  justify-center"
+        >
           Collection
         </h1>
         <div className="box-container lg:flex justify-center m-0 pt-10">
@@ -54,7 +62,10 @@ function AllItem() {
               className="img  lg:w-[360px] lg:h-[480px] mx-[5%] pt-[2%]"
               key={index}
             >
-              <div className="bg-black h-[250px] rounded-3xl lg:h-[100%] m-[4%]">
+              <div
+                title={item.name}
+                className="bg-black h-[250px] rounded-3xl lg:h-[100%] m-[4%]"
+              >
                 img
               </div>
               <ButtonAddItem
@@ -67,7 +78,10 @@ function AllItem() {
         </div>
       </div>
       <div className=" lg:h-screen bg-red-200 lg:pt-[3%] pb-10 lg:pb-0">
-        <h1 className=" text-blue-800 font-bold text-[60px]  justify-center">
+        <h1
+          title="Collection"
+          className=" text-blue-800 font-bold text-[60px]  justify-center"
+        >
           Collection
         </h1>
         <div className="box-container lg:flex justify-center m-0 pt-10">
@@ -76,7 +90,10 @@ function AllItem() {
               className="img  lg:w-[360px] lg:h-[480px] mx-[5%] pt-[2%]"
               key={index}
             >
-              <div className="bg-black h-[250px] rounded-3xl lg:h-[100%] m-[4%]">
+              <div
+                title={item.name}
+                className="bg-black h-[250px] rounded-3xl lg:h-[100%] m-[4%]"
+              >
                 img
               </div>
               <ButtonAddItem
@@ -95,7 +112,9 @@ function AllItem() {
             onClose={() => setAddToCart(false)}
             selectedItem={selectedItem}
             selectedItems={selectedItems}
-            updateQuantityInMiddle={updateQuantityInMiddle} // Pass the function
+            updateQuantityInMiddle={updateQuantityInMiddle}
+            setSelectedItems={setSelectedItems}
+            handleRemoveItem={handleRemoveItem}
           />
         )}
       </div>
