@@ -6,9 +6,27 @@ import ShoppingBagWindow from "../ShoppingBagWindow";
 function AllItem() {
   const [addToCart, setAddToCart] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
+  const [selectedItems, setSelectedItems] = useState([]); // เพิ่ม state นี้
 
   const handleAddtoCart = (item) => {
-    setSelectedItem(item);
+    const existingItemIndex = selectedItems.findIndex(
+      (selected) => selected.id === item.id
+    );
+
+    if (existingItemIndex !== -1) {
+      // ถ้ารายการมีอยู่แล้ว ให้เพิ่มจำนวน
+      const updatedItems = [...selectedItems];
+      updatedItems[existingItemIndex].quantity += 1;
+      setSelectedItems(updatedItems);
+    } else {
+      // ถ้ารายการยังไม่มีในรายการที่เลือก ให้เพิ่มรายการใหม่
+      setSelectedItem(item);
+      setAddToCart(true);
+      setSelectedItems((prevSelectedItems) => [
+        ...prevSelectedItems,
+        { ...item, quantity: 1 },
+      ]);
+    }
     setAddToCart(true);
   };
 
@@ -69,6 +87,7 @@ function AllItem() {
             isOpen={addToCart}
             onClose={() => setAddToCart(false)}
             selectedItem={selectedItem}
+            selectedItems={selectedItems} // ส่งรายการทั้งหมดที่เลือกไปให้ ShoppingBagWindow
           />
         )}
       </div>
