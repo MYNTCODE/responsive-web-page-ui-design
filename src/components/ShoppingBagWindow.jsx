@@ -108,7 +108,7 @@ function ShoppingBagWindow({
                   <div className="price-list text-right ">
                     {selectedItems.map((item, index) => (
                       <p key={index} className="text-window ">
-                        {item.price}
+                        ${(item.price * item.quantity).toFixed(2)}
                       </p>
                     ))}
                   </div>
